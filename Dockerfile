@@ -1,8 +1,12 @@
-FROM python:3.8-alpine
+FROM python:3.8-slim-buster
 
 EXPOSE 8000
 
-RUN apk add --no-cache gcc python3-dev musl-dev unixodbc-dev g++
+RUN apt-get update
+
+RUN apt-get install 'apt-utils' -y
+
+RUN apt-get install 'unixodbc-dev' 'g++' 'musl-dev' -y
 
 ADD . /django_app
 
